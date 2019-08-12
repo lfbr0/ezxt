@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+
+from sys import argv as argument #arg1 for file, arg..x for other params
+from os import system as shell #shell(something). ex.:shell(ls -la)
+
+"""
+Script variables
+"""
+help_msg="Use 'ezxt -h' or 'ezxt --help' for help." #Help message
+valid_extensions=['tar.bz2','tar.gz','rar','tar','tbz2','tgz','zip','tar.bz'] #Valid extension/file types
+
+def help():
+    print('------------------')
+    print('EZXT - Easy Extract - Extract files automatically')
+    print('To extract a file, just use: ezxt [FILE].')
+    print('If the file is recognized as valid, it will be automatically extracted.')
+    print('Valid filetypes are (at the moment):',valid_extensions)
+    print('------------------')
+
+#If no arguments -> return error
+if len(argument)==1: print("ERROR: no arguments passed.",help_msg)
+#If more arguments than file -> return error
+if len(argument)>2: print("ERROR: more arguments than expected.",help_msg)
+#If everything is okay
+if len(argument)==2:
+    if argument[1]=='-h' or argument[1]=='--help':
+        help()
+    else:
+        def extract(file,extension):
+            """Will extract given file according to extension."""
+            if extension=='tar.bz2' or extension=='tar.bz' or extension=='tbz2': shell('tar xjf '+file)
+            if extension=='tar.gz' or extension=='tar.tgz': shell('tar xzf '+file)
+            if extension=='rar': shell('rar x '+file)
+            if extension=='tar': shell('tar xvf '+file)
+            if extension=='zip': shell('unzip '+file)
+
+        def is_valid_file(file=argument[1]):
+            """Will check if filed passed is a valid file."""
+            first_dot=False #If first dot then true
+            extension=""
+            
+            #Will check for first dot
+            for char in file:
+                if char =="." and first_dot==False: first_dot=True; continue
+                if first_dot:
+                    extension+=char
+            
+            #Check result
+            if extension=="": return False
+            else:
+                if extension in valid_extensions:
+                    return True,extension #Return True and the extension of the file
+                else: 
+                    return False
+
+        #If not a valid file -> return error
+        if not is_valid_file(): 
+            print("ERROR: no valid file passed.", help_msg)
+        else:
+            extract(argument[1],is_valid_file()[1])
