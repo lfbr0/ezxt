@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from sys import argv as argument #arg1 for file, arg..x for other params
-from os import system as shell #shell(something). ex.:shell(ls -la)
+from os import system as shell #shell(something). ex.:shell('ls -la')
 
 """
 Script variables
