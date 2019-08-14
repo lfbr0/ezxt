@@ -18,6 +18,10 @@ help() {
         echo $help_msg
         exit -1
     fi
+   #Was help called out on any of args?
+   if { [[ "$1" == "-h" ]] || [[ "$1" == "--help"]] || [[ "$2" == "-h" ]] || [[ "$2" == "--help" ]]; }; then
+        help
+   fi
    #Does file exist?
    if [[ ! -f "$1" ]]; then
        echo "ERROR: file doesn't exist."
