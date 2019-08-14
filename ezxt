@@ -25,12 +25,12 @@ help() {
         "-h" | "--help")
         help
         ;; 
-    esac
+        esac
    case "$2" in
         "-h" | "--help")
         help
         ;;
-    esac
+        esac
    #Does file exist?
    if [[ ! -f "$1" ]]; then
        echo "ERROR: file doesn't exist."
