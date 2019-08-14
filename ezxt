@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+#Script variables
+help_msg="Use 'ezxt -h' or 'ezxt --help' for help." #Help message
+
+#Help function - prints out for help/instructions
+help() {
+    clear
+    echo "EZXT - Easy Extract - Extract files automatically"
+    echo "To extract a file, just use the command: ezxt [FILE]"
+    echo "If the filetype is supported and the file is valid, it will be taken care of for you."
+}
+
+#Validity Check - will check if only file argument and file exists.
+    #If more than 2 arg. $1 file , $2 [OPTIONAL] specific path
+    if [ $# -gt 2 ]; then
+        echo "ERROR: more arguments than expected."
+        echo $help_msg
+        exit -1
+    fi
+   #Does file exist?
+   if [[ ! -f "$1" ]]; then
+       echo "ERROR: file doesn't exist."
+       echo $help_msg
+       exit -1
+   fi
+   #Does specific path indicated exist?
+   if [ $# -eq 2 ]; then 
+        if [[ ! -d "$2" ]]; then
+            echo "ERROR: specified path doesn't exist."
+            echo $help_msg
+            exit -1
+        fi 
+    fi
+
+#Will extract it according to extension
+case "$1" in
+    *.tar.bz2 | *.tar.bz | *.tbz2)
+        if [ $# -eq 1 ]; then
+            tar xjf $1 -C $PWD
+        else
+            tar xjf $1 -C $2
+        fi ;;
+    *.tar.gz | *.tar.tgz)
+        if [ $# -eq 1 ]; then 
+            tar xzf $1 -C $PWD 
+        else 
+            tar xzf $1 -C $2
+        fi ;;
+    *.tar)
+        if [ $# -eq 1 ]; then 
+            tar xvf $1 -C $PWD 
+        else 
+            tar xvf $1 -C $2
+        fi ;;
+    *.rar)
+        if [ $# -eq 1 ]; then
+            rar x $1 $PWD
+        else
+            rar x $1 $2
+        fi ;;
+    *.zip)
+        if [ $# -eq 1 ]; then
+            unzip $1 -d $PWD
+        else
+            unzip $1 -d $2
+        fi ;;
+    *)
+        echo "ERROR: file type not supported/recognized!"
+        exit -1
+        ;;
+esac
