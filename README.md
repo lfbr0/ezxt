@@ -1,5 +1,5 @@
 # ezxt
-A simpler, automatic way to extract files using Python 3.
+A simpler, automatic way to extract files using Bash.
 Works on all Linux distributions.
 
 ## Installation
@@ -14,8 +14,9 @@ wget https://raw.githubusercontent.com/lribr0/ezxt/master/ezxt && sudo cp -va ez
 ## Usage
 Using this is very simple:
 ```bash
-ezxt [FILE]
+ezxt [FILE] [PATH_TO_EXTRACT_FILE_TO]
 ```
+Specifying a path is optional, however. You can just use ```ezxt [FILE]``` , and it will extract to $PWD - the Working Directory.
 It will automatically detect the filetype and extract it for you. No fuss.
 
 ## Notes
