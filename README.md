@@ -20,7 +20,7 @@ Specifying a path is optional, however. You can just use ```ezxt [FILE]``` , and
 It will automatically detect the filetype and extract it for you. No fuss.
 
 ## Notes
-So far, this will only extract the most common type of files. Use ```ezxt --help``` or ```ezxt -h``` to check which ones are supported (don't worry, though, as most are supported!).
+So far, this will only extract the most common type of files. Use ```ezxt --help``` or ```ezxt -h``` for help.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
