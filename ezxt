@@ -7,8 +7,10 @@ help_msg="Use 'ezxt -h' or 'ezxt --help' for help." #Help message
 help() {
     clear
     echo "EZXT - Easy Extract - Extract files automatically"
-    echo "To extract a file, just use the command: ezxt [FILE]"
+    printf "To extract a file, just use the command:\n\tezxt [FILE] [PATH_TO_EXTRACT_TO]\n"
+    printf "If you don't want a specific path, just use:\n\tezxt [FILE] - doing this will extract to the working directory.\n"
     echo "If the filetype is supported and the file is valid, it will be taken care of for you."
+    exit 0
 }
 
 #Validity Check - will check if only file argument and file exists.
@@ -19,9 +21,16 @@ help() {
         exit -1
     fi
    #Was help called out on any of args?
-   if { [[ "$1" == "-h" ]] || [[ "$1" == "--help"]] || [[ "$2" == "-h" ]] || [[ "$2" == "--help" ]]; }; then
+   case "$1" in
+        "-h" | "--help")
         help
-   fi
+        ;; 
+    esac
+   case "$2" in
+        "-h" | "--help")
+        help
+        ;;
+    esac
    #Does file exist?
    if [[ ! -f "$1" ]]; then
        echo "ERROR: file doesn't exist."
