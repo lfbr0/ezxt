@@ -35,14 +35,14 @@ help() {
    if [[ ! -f "$1" ]]; then
        echo "ERROR: file doesn't exist."
        echo $help_msg
-       exit -1
+       exit -2
    fi
    #Does specific path indicated exist?
    if [ $# -eq 2 ]; then 
         if [[ ! -d "$2" ]]; then
             echo "ERROR: specified path doesn't exist."
             echo $help_msg
-            exit -1
+            exit -3
         fi 
     fi
 
@@ -80,6 +80,6 @@ case "$1" in
         fi ;;
     *)
         echo "ERROR: file type not supported/recognized!"
-        exit -1
+        exit -4
         ;;
 esac
