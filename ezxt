@@ -18,7 +18,7 @@ help() {
     if [ $# -gt 2 ]; then
         echo "ERROR: more arguments than expected."
         echo $help_msg
-        exit -1
+        exit 1
     fi
    #Was help called out on any of args?
    case "$1" in
@@ -35,14 +35,14 @@ help() {
    if [[ ! -f "$1" ]]; then
        echo "ERROR: file doesn't exist."
        echo $help_msg
-       exit -2
+       exit 2
    fi
    #Does specific path indicated exist?
    if [ $# -eq 2 ]; then 
         if [[ ! -d "$2" ]]; then
             echo "ERROR: specified path doesn't exist."
             echo $help_msg
-            exit -3
+            exit 3
         fi 
     fi
 
@@ -80,6 +80,6 @@ case "$1" in
         fi ;;
     *)
         echo "ERROR: file type not supported/recognized!"
-        exit -4
+        exit 4
         ;;
 esac
