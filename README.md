@@ -9,7 +9,7 @@ sudo cp -va ezxt /usr/sbin/ && chmod +x /usr/sbin/ezxt
 ```
 Or you can do it all at once with:
 ```bash
-sudo wget https://raw.githubusercontent.com/lribr0/ezxt/master/ezxt && sudo cp -va ezxt /usr/sbin/ && chmod +x /usr/sbin/ezxt
+sudo wget https://raw.githubusercontent.com/lribr0/ezxt/master/ezxt && sudo cp -va ezxt /usr/sbin/ && sudo chmod +x /usr/sbin/ezxt
 ```
 ## Usage
 Using this is very simple:
