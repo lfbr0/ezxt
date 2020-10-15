@@ -1,6 +1,6 @@
 # ezxt
-A simpler, automatic way to extract files using Bash.
-Works on all Linux distributions.
+A simple script automating file extraction.
+Working on all Linux distributions.
 
 ## Installation
 To install this simply download the file, and use the command:
